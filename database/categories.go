@@ -59,6 +59,8 @@ func QuerryLatestPostsByCategory(db *sql.DB, user_id int, c_name string, offset 
 		if err != nil {
 			return res, errors.New("QuerryLatestPostsByCategory failed to scan row: " + err.Error())
 		}
+		post.CreatedAtformated = post.CreatedAt.UTC().Format("2006/01/02 15:04")
+
 		res = append(res, post)
 		fmt.Printf("PID: %d, UID: %d, CONTENT: %12s, like:%d:%d , TIME:%15s, UName: %5s, categories %v %v\n", post.ID, post.UserID, post.Content, post.LikeCount, post.LikeCount, post.CreatedAt, post.UserName, post.Categories, post.Liked)
 	}

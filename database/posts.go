@@ -31,6 +31,8 @@ func QuerryLatestPostsByUserLikes(db *sql.DB, user_id, ammount, offset int) ([]s
 		if err != nil {
 			return res, errors.New("QuerryLatestPosts failed to scan row: " + err.Error())
 		}
+		post.CreatedAtformated = post.CreatedAt.UTC().Format("2006/01/02 15:04")
+
 		res = append(res, post)
 		// fmt.Printf("PID: %d, UID: %d, CONTENT: %12s, like:%d:%d , TIME:%15s, UName: %5s, categories %v %v\n", post.ID, post.UserID, post.Content, post.LikeCount, post.LikeCount, post.CreatedAt, post.UserName, post.Categories, post.Liked)
 	}
@@ -41,7 +43,6 @@ func QuerryLatestPostsByUserLikes(db *sql.DB, user_id, ammount, offset int) ([]s
 	}
 	return res, nil
 }
-
 
 func QuerryMostLikedPosts(db *sql.DB, user_id, ammount, offset int) ([]structs.Post, error) {
 	res := make([]structs.Post, 0, ammount)
@@ -63,6 +64,8 @@ func QuerryMostLikedPosts(db *sql.DB, user_id, ammount, offset int) ([]structs.P
 		if err != nil {
 			return res, errors.New("QuerryLatestPosts failed to scan row: " + err.Error())
 		}
+		post.CreatedAtformated = post.CreatedAt.UTC().Format("2006/01/02 15:04")
+
 		res = append(res, post)
 		// fmt.Printf("PID: %d, UID: %d, CONTENT: %12s, like:%d:%d , TIME:%15s, UName: %5s, categories %v %v\n", post.ID, post.UserID, post.Content, post.LikeCount, post.LikeCount, post.CreatedAt, post.UserName, post.Categories, post.Liked)
 	}
@@ -94,6 +97,7 @@ func QuerryLatestPosts(db *sql.DB, user_id, ammount, offset int) ([]structs.Post
 		if err != nil {
 			return res, errors.New("QuerryLatestPosts failed to scan row: " + err.Error())
 		}
+		post.CreatedAtformated = post.CreatedAt.UTC().Format("2006/01/02 15:04")
 		res = append(res, post)
 		fmt.Printf("PID: %d, UID: %d, CONTENT: %12s, like:%d:%d , TIME:%15s, UName: %5s, categories %v %v\n", post.ID, post.UserID, post.Content, post.LikeCount, post.LikeCount, post.CreatedAt, post.UserName, post.Categories, post.Liked)
 	}
@@ -125,6 +129,8 @@ func QuerryPostsbyUser(db *sql.DB, username string, user_id, ammount, offset int
 		if err != nil {
 			return res, errors.New("QuerryPostsbyUser " + err.Error())
 		}
+		post.CreatedAtformated = post.CreatedAt.UTC().Format("2006/01/02 15:04")
+
 		res = append(res, post)
 		fmt.Printf("Post ID: %d, User ID: %d, Title: %15s, Content: %15s, Created At: %s\n", post.ID, post.UserID, post.Title, post.Content, post.CreatedAt)
 	}
@@ -203,5 +209,7 @@ func GetPostByID(db *sql.DB, Postid, UserID int) (structs.Post, error) {
 	if categories.Valid {
 		post.Categories = strings.Split(categories.String, "|")
 	}
+	post.CreatedAtformated = post.CreatedAt.UTC().Format("2006/01/02 15:04")
+
 	return post, nil
 }

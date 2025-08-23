@@ -12,22 +12,24 @@ type Comment struct {
 	LikeCount    int
 	DislikeCount int
 	Content      string
-	CreatedAt    time.Time
+	CreatedAt    time.Time `json:"-"`
+	CreatedAtformated string    `json:"created_at"`
 	Liked        string
 }
 
 type Post struct {
-	ID                  int       `json:"post_id"`
-	UserID              int       `json:"-"`
-	UserName            string    `json:"author_username"`
-	Title               string    `json:"post_title"`
-	Content             string    `json:"post_content"`
-	LikeCount           int       `json:"like_count"`
-	DislikeCount        int       `json:"dislike_count"`
-	CommentCount        int       `json:"comment_count"`
-	CreatedAt           time.Time `json:"post_creation_time"`
-	Categories          []string  `json:"post_categories"`
-	Liked               string    `json:"view"`
+	ID                int       `json:"post_id"`
+	UserID            int       `json:"-"`
+	UserName          string    `json:"author_username"`
+	Title             string    `json:"post_title"`
+	Content           string    `json:"post_content"`
+	LikeCount         int       `json:"like_count"`
+	DislikeCount      int       `json:"dislike_count"`
+	CommentCount      int       `json:"comment_count"`
+	CreatedAt         time.Time `json:"-"`
+	CreatedAtformated string    `json:"post_creation_time"`
+	Categories        []string  `json:"post_categories"`
+	Liked             string    `json:"view"`
 }
 
 type View struct {
@@ -43,6 +45,7 @@ type Profile struct {
 	ArticleCount int
 	CommentCount int
 	CreatedAt    time.Time
+	CreatedAtformated string
 	CurrentPage  string
 	Category     string
 }

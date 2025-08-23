@@ -30,6 +30,7 @@ func GetUserProfile[T string | int](db *sql.DB, userSpecific T) (structs.Profile
 	if err != nil {
 		return userProfile, errors.New("GetUserProfile 2 " + err.Error())
 	}
+	userProfile.CreatedAtformated = userProfile.CreatedAt.UTC().Format("2006/01/02 15:04")
 
 	return userProfile, nil
 }

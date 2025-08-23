@@ -13,7 +13,7 @@
                     <span class="authorName">@{{.Post.UserName}}</span>
                 </a>
                 <span class="material-symbols-outlined" id="timer">schedule</span>
-                <span class="postDate" data-time="{{.Post.CreatedAt}}">{{.Post.CreatedAt}}</span>
+                <span class="postDate" data-time="{{.Post.CreatedAt}}">{{.Post.CreatedAtformated}}</span>
             </div>
         </div>
         <span class="HideDesktop material-symbols-outlined close-post DisableUserSelect">
@@ -87,7 +87,7 @@
                         <a href="/?type=profile&username={{.UserName}}"><span class="commentAuthorName">@{{.UserName}}</span></a>
                         <div class="area-of-time">
                             <span class="material-symbols-outlined" id="timer">schedule</span>
-                            <span class="commentTime" data-time="{{.CreatedAt}}"></span>
+                            <span class="commentTime" data-time="{{.CreatedAt}}">{{.CreatedAtformated}}</span>
                         </div>
                     </div>
                     <div class="commentReaction DisableUserSelect">

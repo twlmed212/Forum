@@ -51,6 +51,7 @@ func GetCommentsByPost(db *sql.DB, userId, postId int) ([]structs.Comment, error
 		if err != nil {
 			return res, err
 		}
+		comment.CreatedAtformated = comment.CreatedAt.UTC().Format("2006/01/02 15:04")
 		res = append(res, comment)
 	}
 
@@ -65,6 +66,7 @@ func GetCommentById(db *sql.DB, UserId, commentId int) (structs.Comment, error) 
 	var comment structs.Comment
 	err := db.QueryRow(querries.GetCommentsByID, UserId, commentId, structs.Limit).Scan(&comment.ID, &comment.PostID, &comment.UserID, &comment.Content,
 		&comment.LikeCount, &comment.DislikeCount, &comment.CreatedAt, &comment.UserName)
+	comment.CreatedAtformated = comment.CreatedAt.UTC().Format("2006/01/02 15:04")
 	if err == sql.ErrNoRows {
 		return comment, fmt.Errorf("comment with ID %d not found", commentId)
 	}

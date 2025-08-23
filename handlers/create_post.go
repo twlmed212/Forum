@@ -41,7 +41,7 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 		CategoriesList []string
 	}{}
 	err = json.NewDecoder(r.Body).Decode(&data)
-	if (strings.Trim(data.Title, " ") == "") || (strings.Trim(data.Content, " ") == "") {
+	if (strings.Trim(data.Title, " ") == "") || (strings.Trim(data.Content, " ") == "") || (len(data.Categories) == 0) {
 		ErrorJs(w, http.StatusBadRequest, errors.New("please enter title and content"))
 		return
 	}

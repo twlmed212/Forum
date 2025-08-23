@@ -170,7 +170,7 @@ func InfiniteScroll(w http.ResponseWriter, r *http.Request) {
 
 	// Optionally set the status code to 200 OK
 	w.WriteHeader(http.StatusOK)
-
+	
 	err = json.NewEncoder(w).Encode(struct {
 		Posts   []structs.Post  `json:"posts"`
 		Profile structs.Profile `json:"profile"`

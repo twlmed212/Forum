@@ -96,7 +96,10 @@ async function createPost() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
-
+            if (response.status === 400){
+                showError( "Bad Request, Please try again");
+                return
+            }
             if (response.status === 200) {
                 const post = await response.json();
                 updateUI(post, closeModal, form);
